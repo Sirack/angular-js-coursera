@@ -27,6 +27,10 @@ function FoundItemsDirectiveController() {
   console.log(found.items);
 
   found.checkEmptiness = function() {
+
+    if(found.items == undefined)
+      return false;
+    
     if(found.items.length == 0) {
       console.log('not found')
       return true;
@@ -42,11 +46,13 @@ function NarrowItDownController(MenuSearchService) {
   var narrowItDown = this;
   
   narrowItDown.searchTerm = '';
-  narrowItDown.matchedItems = [];
+  narrowItDown.matchedItems = undefined;
 
   narrowItDown.search = function () {
     
     console.log(narrowItDown.searchTerm);
+    narrowItDown.matchedItems = undefined;
+
     var matchedItemsPromise = MenuSearchService.getMatchedMenuItems(narrowItDown.searchTerm);
 
     matchedItemsPromise.then(function success(result) {
