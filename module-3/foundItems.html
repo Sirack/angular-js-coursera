@@ -1,0 +1,7 @@
+<ol>
+	<li ng-repeat="item in narrowItDown.items">
+	{{item['short_name']}} --> {{item['description']}} <button ng-click="narrowItDown.onRemove({index: $index});">Don't want this one!</button>
+	</li>
+</ol>
+
+<div class="error" ng-show="narrowItDown.checkEmptiness()">Nothing found!</div>
